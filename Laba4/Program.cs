@@ -1,30 +1,26 @@
 ﻿using System;
 
-class Student
+// Абстрактный класс Person
+abstract class Person
+{
+    // Абстрактное поле для имени
+    public abstract string Name { get; set; }
+
+    // Абстрактный метод для получения информации о человеке
+    public abstract string GetInfo();
+}
+
+// Класс Student, наследующий от Person
+class Student : Person
 {
     private string _name; // Закрытое поле для имени студента
     public int Age { get; set; } // Публичное поле для возраста студента
 
-    // Статическое поле для хранения общего количества студентов
-    private static int _studentCount;
-
-    // Статическое свойство для доступа к количеству студентов
-    public static int StudentCount
-    {
-        get { return _studentCount; }
-    }
-
-    // Свойство для доступа к закрытому полю _name
-    public string Name
+    // Переопределение абстрактного свойства Name
+    public override string Name
     {
         get { return _name; }
         set { _name = value; }
-    }
-
-    // Статический конструктор
-    static Student()
-    {
-        _studentCount = 0; // Инициализация количества студентов
     }
 
     // Конструктор, принимающий только имя
@@ -32,7 +28,6 @@ class Student
     {
         _name = name;
         Age = 0; // Устанавливаем возраст по умолчанию
-        _studentCount++; // Увеличиваем количество студентов
     }
 
     // Конструктор, принимающий имя и возраст
@@ -40,11 +35,10 @@ class Student
     {
         _name = name;
         Age = age;
-        _studentCount++; // Увеличиваем количество студентов
     }
 
-    // Метод, возвращающий информацию о студенте
-    public string WriteInfo()
+    // Переопределение метода GetInfo()
+    public override string GetInfo()
     {
         return $"Name: {_name}, Age: {Age}";
     }
@@ -55,19 +49,22 @@ class Student
         Age++;
     }
 
-    // Статический метод для получения информации о количестве студентов
-    public static string GetStudentCountInfo()
+    // Переопределение метода ToString() класса Object
+    public override string ToString()
     {
-        return $"Total number of students: {StudentCount}";
+        return $"Student: {_name}, Age: {Age}";
     }
 }
 
-// Статический класс для статистики студентов
-static class StudentStatistics
+// Класс ITStudent, наследующий от Student
+class ITStudent : Student
 {
-    public static void DisplayTotalStudents()
+    public ITStudent(string name, int age) : base(name, age) { }
+
+    // Скрытие метода GetInfo() с помощью ключевого слова new
+    public new string GetInfo()
     {
-        Console.WriteLine(Student.GetStudentCountInfo());
+        return $"IT Student: {Name}, Age: {Age}";
     }
 }
 
@@ -75,26 +72,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Создание объектов Student различными способами
+        // Создание объекта Student с именем и возрастом
         Student student1 = new Student("John", 20);
-        Console.WriteLine(student1.WriteInfo()); // Output: Name: John, Age: 20
+        Console.WriteLine(student1.GetInfo()); // Output: Name: John, Age: 20
 
-        Student student2 = new Student("Jane");
-        Console.WriteLine(student2.WriteInfo()); // Output: Name: Jane, Age: 0
+        // Создание объекта ITStudent с именем и возрастом
+        ITStudent itStudent1 = new ITStudent("Alice", 22);
+        Console.WriteLine(itStudent1.GetInfo()); // Output: IT Student: Alice, Age: 22
 
-        Student student3 = new Student("Alice", 22);
-        Console.WriteLine(student3.WriteInfo()); // Output: Name: Alice, Age: 22
-
-        // Увеличение возраста студента Jane на единицу
-        student2.BecomeOlder();
-        Console.WriteLine(student2.WriteInfo()); // Output: Name: Jane, Age: 1
+        // Показать разницу между переопределением и скрытием метода
+        Console.WriteLine(((Person)student1).GetInfo()); // Output: Name: John, Age: 20 (переопределенный метод)
+        Console.WriteLine(((Person)itStudent1).GetInfo()); // Output: Name: Alice, Age: 22 (переопределенный метод)
 
         // Увеличение возраста студента John на единицу
         student1.BecomeOlder();
-        Console.WriteLine(student1.WriteInfo()); // Output: Name: John, Age: 21
-
-        // Вывод общего количества студентов
-        StudentStatistics.DisplayTotalStudents(); // Output: Total number of students: 3
+        Console.WriteLine(student1.ToString()); // Output: Student: John, Age: 21
 
         Console.ReadLine();
     }
