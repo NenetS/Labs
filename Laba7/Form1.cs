@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Laba7.Laba7;
 
 namespace Laba7
 {
     public partial class Form1 : Form
     {
         private List<Student> students = new List<Student>();
+
         public Form1()
         {
             InitializeComponent();
@@ -20,24 +22,36 @@ namespace Laba7
             // Заполнение ComboBox для Department
             comboBoxDepartment.Items.AddRange(new string[]
             {
-            "Институт информационных технологий",
-            "Институт экономики",
-            "Институт права"
+                "Институт точных наук и информационных технологий",
+                "Институт экономики",
+                "Институт права"
             });
 
             // Заполнение ComboBox для Specification
             comboBoxSpecification.Items.AddRange(new string[]
             {
-            "Программная инженерия",
-            "Экономика",
-            "Юриспруденция"
+                "Прикладная информатика",
+                "Экономика",
+                "Юриспруденция"
             });
 
-            dataGridViewStudents.DataSource = students;
+            // Инициализация DataGridView
+            dataGridViewStudents.AutoGenerateColumns = true; // Автоматическое создание столбцов
+            UpdateDataGridView(); // Обновление отображения данных
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtRecordBook.Text) ||
+                string.IsNullOrEmpty(txtFullName.Text) ||
+                comboBoxDepartment.SelectedIndex == -1 ||
+                comboBoxSpecification.SelectedIndex == -1 ||
+                string.IsNullOrEmpty(txtGroup.Text))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.");
+                return;
+            }
+
             var student = new Student(txtRecordBook.Text, txtFullName.Text,
                                        comboBoxDepartment.SelectedItem.ToString(),
                                        comboBoxSpecification.SelectedItem.ToString(),
@@ -84,8 +98,8 @@ namespace Laba7
 
         private void UpdateDataGridView()
         {
-            dataGridViewStudents.DataSource = null;
-            dataGridViewStudents.DataSource = students;
+            dataGridViewStudents.DataSource = null; // Сброс источника данных
+            dataGridViewStudents.DataSource = students; // Установка нового источника данных
         }
 
         private void ClearInputFields()
@@ -100,6 +114,5 @@ namespace Laba7
             dtpDateOfAdmission.Value = DateTime.Now;
             txtGroup.Clear();
         }
-    }
     }
 }

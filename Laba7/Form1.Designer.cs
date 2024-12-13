@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridViewStudents = new System.Windows.Forms.DataGridView();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RecordBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Specification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateOfAdmission = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRecordBook = new System.Windows.Forms.TextBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
@@ -54,61 +48,12 @@
             // dataGridViewStudents
             // 
             this.dataGridViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.StudentName,
-            this.RecordBook,
-            this.Group,
-            this.Department,
-            this.Specification,
-            this.DateOfAdmission});
             this.dataGridViewStudents.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewStudents.Name = "dataGridViewStudents";
             this.dataGridViewStudents.RowHeadersWidth = 51;
             this.dataGridViewStudents.RowTemplate.Height = 24;
             this.dataGridViewStudents.Size = new System.Drawing.Size(1265, 316);
             this.dataGridViewStudents.TabIndex = 0;
-            // 
-            // StudentName
-            // 
-            this.StudentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.StudentName.HeaderText = "Student Name";
-            this.StudentName.MinimumWidth = 6;
-            this.StudentName.Name = "StudentName";
-            // 
-            // RecordBook
-            // 
-            this.RecordBook.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RecordBook.HeaderText = "Record Book";
-            this.RecordBook.MinimumWidth = 6;
-            this.RecordBook.Name = "RecordBook";
-            // 
-            // Group
-            // 
-            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Group.HeaderText = "Group";
-            this.Group.MinimumWidth = 6;
-            this.Group.Name = "Group";
-            // 
-            // Department
-            // 
-            this.Department.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Department.HeaderText = "Department";
-            this.Department.MinimumWidth = 6;
-            this.Department.Name = "Department";
-            // 
-            // Specification
-            // 
-            this.Specification.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Specification.HeaderText = "Specification";
-            this.Specification.MinimumWidth = 6;
-            this.Specification.Name = "Specification";
-            // 
-            // DateOfAdmission
-            // 
-            this.DateOfAdmission.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DateOfAdmission.HeaderText = "Date Of Admission";
-            this.DateOfAdmission.MinimumWidth = 6;
-            this.DateOfAdmission.Name = "DateOfAdmission";
             // 
             // label1
             // 
@@ -200,7 +145,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(1088, 364);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(104, 23);
             this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -209,7 +154,7 @@
             // 
             this.btnUpdate.Location = new System.Drawing.Point(1088, 419);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(104, 23);
             this.btnUpdate.TabIndex = 12;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -218,7 +163,7 @@
             // 
             this.btnDelete.Location = new System.Drawing.Point(1088, 474);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(104, 23);
             this.btnDelete.TabIndex = 13;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -253,12 +198,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewStudents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RecordBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Department;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Specification;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateOfAdmission;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRecordBook;
         private System.Windows.Forms.TextBox txtFullName;
