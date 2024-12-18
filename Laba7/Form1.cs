@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Laba7.Laba7;
 
 namespace Laba7
 {
@@ -20,7 +19,7 @@ namespace Laba7
             InitializeComponent();
 
             // Заполнение ComboBox для Department
-            comboBoxDepartment.Items.AddRange(new string[]
+            /*comboBoxDepartment.Items.AddRange(new string[]
             {
                 "Институт точных наук и информационных технологий",
                 "Институт экономики",
@@ -34,10 +33,9 @@ namespace Laba7
                 "Экономика",
                 "Юриспруденция"
             });
-
-            // Инициализация DataGridView
-            dataGridViewStudents.AutoGenerateColumns = true; // Автоматическое создание столбцов
-            UpdateDataGridView(); // Обновление отображения данных
+            */
+            //dataGridViewStudents.AutoGenerateColumns = true; // Автоматическое создание столбцов
+            //UpdateDataGridView(); // Инициализация DataGridView
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -71,29 +69,35 @@ namespace Laba7
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridViewStudents.CurrentRow != null)
+            if (dataGridViewStudents.CurrentRow == null) // Проверка на наличие выбранной строки
             {
-                var selectedStudent = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
+                MessageBox.Show("Пожалуйста, выберите студента для редактирования.");
+                return;
+            }
 
-                selectedStudent.FullName = txtFullName.Text;
-                selectedStudent.Department = comboBoxDepartment.SelectedItem.ToString();
-                selectedStudent.Specification = comboBoxSpecification.SelectedItem.ToString();
-                selectedStudent.DateOfAdmission = dtpDateOfAdmission.Value;
-                selectedStudent.Group = txtGroup.Text;
+            var selectedStudent = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
 
-                UpdateDataGridView();
-                ClearInputFields();
+            // Открытие формы редактирования
+            using (var editForm = new EditStudentForm(selectedStudent))
+            {
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    UpdateDataGridView(); // Обновление DataGridView после редактирования
+                }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dataGridViewStudents.CurrentRow != null)
+            if (dataGridViewStudents.CurrentRow == null) // Проверка на наличие выбранной строки
             {
-                var selectedStudent = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
-                students.Remove(selectedStudent);
-                UpdateDataGridView();
+                MessageBox.Show("Пожалуйста, выберите студента для удаления.");
+                return;
             }
+
+            var selectedStudent = (Student)dataGridViewStudents.CurrentRow.DataBoundItem;
+            students.Remove(selectedStudent);
+            UpdateDataGridView();
         }
 
         private void UpdateDataGridView()
@@ -111,7 +115,7 @@ namespace Laba7
             comboBoxDepartment.SelectedIndex = -1;
             comboBoxSpecification.SelectedIndex = -1;
 
-            dtpDateOfAdmission.Value = DateTime.Now;
+            dtpDateOfAdmission.Value = DateTime.Now; // Установка текущей даты по умолчанию
             txtGroup.Clear();
         }
     }

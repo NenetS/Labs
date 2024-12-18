@@ -40,13 +40,17 @@
             this.dtpDateOfAdmission = new System.Windows.Forms.DateTimePicker();
             this.txtGroup = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewStudents
             // 
+            this.dataGridViewStudents.AllowUserToOrderColumns = true;
             this.dataGridViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStudents.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewStudents.Name = "dataGridViewStudents";
@@ -66,25 +70,25 @@
             // 
             // txtRecordBook
             // 
-            this.txtRecordBook.Location = new System.Drawing.Point(34, 364);
-            this.txtRecordBook.Multiline = true;
+            this.txtRecordBook.Location = new System.Drawing.Point(34, 396);
             this.txtRecordBook.Name = "txtRecordBook";
-            this.txtRecordBook.Size = new System.Drawing.Size(229, 56);
+            this.txtRecordBook.Size = new System.Drawing.Size(229, 22);
             this.txtRecordBook.TabIndex = 2;
-            this.txtRecordBook.Text = "Record book #\r\n\r\nСюда вводи:\r\n";
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(34, 442);
-            this.txtFullName.Multiline = true;
+            this.txtFullName.Location = new System.Drawing.Point(34, 474);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(229, 57);
+            this.txtFullName.Size = new System.Drawing.Size(229, 22);
             this.txtFullName.TabIndex = 3;
-            this.txtFullName.Text = "Full Name\r\n\r\nВот здесь:";
             // 
             // comboBoxDepartment
             // 
             this.comboBoxDepartment.FormattingEnabled = true;
+            this.comboBoxDepartment.Items.AddRange(new object[] {
+            "Институт точных наук и информационных технологий",
+            "Институт права",
+            "Институт экономики"});
             this.comboBoxDepartment.Location = new System.Drawing.Point(316, 396);
             this.comboBoxDepartment.Name = "comboBoxDepartment";
             this.comboBoxDepartment.Size = new System.Drawing.Size(229, 24);
@@ -102,6 +106,10 @@
             // comboBoxSpecification
             // 
             this.comboBoxSpecification.FormattingEnabled = true;
+            this.comboBoxSpecification.Items.AddRange(new object[] {
+            "Прикладная информатика",
+            "Экономика",
+            "Юриспруденция"});
             this.comboBoxSpecification.Location = new System.Drawing.Point(316, 474);
             this.comboBoxSpecification.Name = "comboBoxSpecification";
             this.comboBoxSpecification.Size = new System.Drawing.Size(229, 24);
@@ -129,17 +137,15 @@
             // 
             this.dtpDateOfAdmission.Location = new System.Drawing.Point(691, 398);
             this.dtpDateOfAdmission.Name = "dtpDateOfAdmission";
-            this.dtpDateOfAdmission.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateOfAdmission.Size = new System.Drawing.Size(229, 22);
             this.dtpDateOfAdmission.TabIndex = 9;
             // 
             // txtGroup
             // 
-            this.txtGroup.Location = new System.Drawing.Point(691, 442);
-            this.txtGroup.Multiline = true;
+            this.txtGroup.Location = new System.Drawing.Point(691, 474);
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(229, 57);
+            this.txtGroup.Size = new System.Drawing.Size(229, 22);
             this.txtGroup.TabIndex = 10;
-            this.txtGroup.Text = "Group #\r\n\r\nСюда:";
             // 
             // btnAdd
             // 
@@ -149,15 +155,17 @@
             this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnUpdate
+            // btnEdit
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1088, 419);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(104, 23);
-            this.btnUpdate.TabIndex = 12;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnEdit.Location = new System.Drawing.Point(1088, 419);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(104, 23);
+            this.btnEdit.TabIndex = 12;
+            this.btnEdit.Text = "UPDATE";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -167,14 +175,45 @@
             this.btnDelete.TabIndex = 13;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(31, 442);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 16);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "FullName";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(31, 364);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 16);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Record Book";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(688, 442);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 16);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Group";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1289, 564);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtGroup);
             this.Controls.Add(this.dtpDateOfAdmission);
@@ -209,8 +248,11 @@
         private System.Windows.Forms.DateTimePicker dtpDateOfAdmission;
         private System.Windows.Forms.TextBox txtGroup;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
 
